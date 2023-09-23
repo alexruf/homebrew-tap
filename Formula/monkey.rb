@@ -5,35 +5,46 @@
 class Monkey < Formula
   desc "An interpreter for the Monkey programming language written in Go."
   homepage "https://github.com/alexruf/monkey"
-  version "0.1.0-dev"
+  version "0.1.1-dev"
   license "MIT"
-  bottle :unneeded
+
+  depends_on "go" => :optional
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/alexruf/monkey/releases/download/v0.1.0-dev/monkey_0.1.0-dev_Darwin_x86_64.tar.gz"
-      sha256 "487a8f2e4dfb595dfe3e932f999e4b5c6e0c74dba4af852fbf196ed899589b4d"
+      url "https://github.com/alexruf/monkey/releases/download/v0.1.1-dev/monkey_0.1.1-dev_darwin_amd64.tar.gz"
+      sha256 "2cb1ab886fc97a391a8bffbd8f692afd44ae76e9f0569ea9153fa2a8f764d8b1"
+
+      def install
+        bin.install "monkey"
+      end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/alexruf/monkey/releases/download/v0.1.0-dev/monkey_0.1.0-dev_Darwin_arm64.tar.gz"
-      sha256 "17da68bcbafbe2313fdc320134e8836e4f518e8908b416d289ae0c451c64a085"
+      url "https://github.com/alexruf/monkey/releases/download/v0.1.1-dev/monkey_0.1.1-dev_darwin_arm64.tar.gz"
+      sha256 "0d75bac54bf6f45deee8aed0e08d8e62cd3c140f5d957e6686ded03c620e3cf5"
+
+      def install
+        bin.install "monkey"
+      end
     end
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/alexruf/monkey/releases/download/v0.1.0-dev/monkey_0.1.0-dev_Linux_x86_64.tar.gz"
-      sha256 "8b7287022ac22a38bf8da93da5dbee6e98d5dd01d9106cf4bf45194da32a6e25"
-    end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/alexruf/monkey/releases/download/v0.1.0-dev/monkey_0.1.0-dev_Linux_arm64.tar.gz"
-      sha256 "18a300a7560241b08ce99fece2083110d10a7809ede1ef232bbd80e823ddafc7"
+      url "https://github.com/alexruf/monkey/releases/download/v0.1.1-dev/monkey_0.1.1-dev_linux_arm64.tar.gz"
+      sha256 "02f68b9d63d9790c52b44f3a126d155a83c229b4b49ba29dfcbfd8eadf34fd27"
+
+      def install
+        bin.install "monkey"
+      end
     end
-  end
+    if Hardware::CPU.intel?
+      url "https://github.com/alexruf/monkey/releases/download/v0.1.1-dev/monkey_0.1.1-dev_linux_amd64.tar.gz"
+      sha256 "b82fa66ba9b720d25915afb612e3841b7f1bddc96dfcdc1001b4054a32983ee2"
 
-  depends_on "go" => :optional
-
-  def install
-    bin.install "monkey"
+      def install
+        bin.install "monkey"
+      end
+    end
   end
 end
